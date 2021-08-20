@@ -76,11 +76,14 @@ def click_next():
 
 craft_url('semiconductor','US','1/1/2020','1/31/2020')
 
-# while status == True:
-#     append_articles()
-#     click_next()
+# This is for loop multiple pages
 
-append_articles()
+while status == True:
+    append_articles()
+    click_next()
+
+# This is for single page
+# append_articles()
 
 df = pd.DataFrame(articles)
 df.to_csv('semiconductor.csv')

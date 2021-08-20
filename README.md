@@ -8,7 +8,7 @@ This is the 3rd web scraper we create to compare web scrapper library on Python.
 3. Install pandas : `pip install pandas`
 4. Put **chromediver.exe** in location that you can access
 5. Under `googlenews3.py` change the PATH value to the location where you put **chromediver.exe**
-6. Run the script like by typing : `py googlenews3.py`
+6. Run the script like by typing : `py googlenews3a.py` on WINDOWS or `python3 googlenews3a.py` on MAC
 
 ### Version Control
 v0.1 -> current version - initial version
