@@ -10,6 +10,21 @@ main_query = ''
 main_region = ''
 status = True
 
+month={
+    "Jan":"1",
+    "Feb":"2",
+    "Mar":"3",
+    "Apr":"4",
+    "May":"5",
+    "Jun":"6",
+    "Jul":"7",
+    "Aug":"8",
+    "Sep":"9",
+    "Oct":"10",
+    "Nov":"11",
+    "Dec":"12"
+}
+
 def craft_url(query, region, start, end):
     global url, main_query, main_region, main_start, main_end
     main_query = query
@@ -19,6 +34,12 @@ def craft_url(query, region, start, end):
     driver.get(url)
     print(url)
 
+def convert_date(value):
+    old_date = value.split()
+    new_date = old_date[2] + "-" + month[old_date[1]] + "-" + old_date[0]
+
+    return new_date
+
 
 def append_articles():
     posts = driver.find_elements_by_css_selector("div[class='dbsr']")
@@ -26,7 +47,7 @@ def append_articles():
         title = post.find_element_by_css_selector("div[class='JheGif nDgy9d']").text
         excerpt = post.find_element_by_css_selector("div[class='Y3v8qd']").text
         source = post.find_element_by_css_selector("div[class='XTjFC WF4CUc']").text
-        date = post.find_element_by_xpath('.//span[@class="WG9SHc"]/span').text
+        date = convert_date(post.find_element_by_xpath('.//span[@class="WG9SHc"]/span').text)
         link = post.find_element_by_xpath('.//a').get_attribute("href")
         article = { 
             "query": main_query,
@@ -55,9 +76,9 @@ def click_next():
 
 craft_url('semiconductor','US','1/1/2020','1/31/2020')
 
-while status == True:
-    append_articles()
-    click_next()
+# while status == True:
+#     append_articles()
+#     click_next()
 
 append_articles()
 
